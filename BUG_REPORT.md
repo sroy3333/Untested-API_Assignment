@@ -49,7 +49,7 @@ src/services/taskService.js
 No validation on query params:
 ```js
 const pageNum = parseInt(page) || 1;
-
+```
 
 **How I discovered it**
 
@@ -60,10 +60,11 @@ By manually testing edge cases and noticing inconsistent results.
 
 Add validation:
 
+```
 if (pageNum < 1 || limitNum < 1) {
   return res.status(400).json({ error: 'Invalid pagination params' });
 }
-
+```
 
 ## 🐞 Bug 3: update() allows invalid/unsafe field updates
 
@@ -71,8 +72,9 @@ if (pageNum < 1 || limitNum < 1) {
 
 src/services/taskService.js
 
+```
 const updated = { ...tasks[index], ...fields };
-
+```
 
 **Expected Behavior**
 
@@ -101,8 +103,9 @@ completedAt
 **Fix**
 - Whitelist allowed fields:
 
+```
 const allowedFields = ['title', 'description', 'status', 'priority', 'dueDate'];
-
+```
 
 ## 🐞 Bug 4: assignTask duplicates validation logic
 
@@ -128,10 +131,11 @@ Service
 **Fix**
 - Remove validation from route and centralize in service:
 
+```
 if (!assignee || assignee.trim() === '') {
   throw new Error('Assignee cannot be empty');
 }
-
+```
 
 
 ## 🐞 Bug 5: Validators not fully covered by tests

@@ -16,6 +16,7 @@ npm run coverage   # run with coverage report
 
 ## Project Structure
 
+```
 task-api/
   coverage
   src/
@@ -31,10 +32,11 @@ task-api/
   package.json
 .gitignore
 README.md
-
+```
 
 ## API Reference
 
+```
 Method	           Path	                                  Description
 POST	             /tasks	                                Create a new task
 GET	               /tasks	                                List all tasks. Supports ?status=, ?page=, ?limit=
@@ -45,9 +47,11 @@ DELETE	           /tasks/:id	                            Delete a task (returns 
 PATCH	             /tasks/:id/complete	                  Mark a task as complete
 PATCH	             /tasks/:id/assign	                    Assign a task to a user (to implement)
 GET	               /tasks/stats	                          Counts by status + overdue count
+```
 
 ### Task shape
 
+```
 {
   "id": "uuid",
   "title": "string",
@@ -59,7 +63,7 @@ GET	               /tasks/stats	                          Counts by status + ove
   "createdAt": "ISO string"
   "assignee": "string (optional)"
 }
-
+```
 
 
 ### Sample requests
@@ -81,8 +85,11 @@ curl -X PATCH http://localhost:3000/tasks/<id>/complete
 
 
 ### Test Coverage Summary
+- 90%+ statement coverage
+- 20 tests passing
+- Unit + Integration coverage
 
-
+```
 PASS  tests/tasks.test.js
 PASS  tests/taskService.test.js
 ---------------- |---------|----------|---------|---------|---------------------
@@ -103,11 +110,11 @@ Test Suites: 2 passed, 2 total
 Tests:       20 passed, 20 total
 Snapshots:   0 total
 Time:        0.854 s, estimated 1 s
-
-Achieved >80% coverage
+```
 
 ### Notes
 
-The data store is in-memory. It resets every time the server restarts.
+The data store is in-memory. 
+It resets every time the server restarts.
 Tests cover unit + integration
 Edge cases included
